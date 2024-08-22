@@ -43,41 +43,45 @@
             id="normalClickUpgrade"
             class="bg-white h-[15%] w-[90%] rounded-lg mb-[2vh] px-3 py-5 hover:cursor-pointer hover:scale-[1.02] duration-300 hover:bg-gray-200"
           >
-            <div class="flex justify-between">
+            <div class="flex justify-between select-none">
               <p class="text-xl font-bold">Normal Click</p>
               <p id="normalClickUpgradeCount" class="text-xl font-bold">0</p>
             </div>
           </div>
           <div
+            id="superClickUpgrade"
             class="bg-white h-[15%] w-[90%] rounded-lg mb-[2vh] px-3 py-5 hover:cursor-pointer hover:scale-[1.02] duration-300 hover:bg-gray-200"
           >
-            <div class="flex justify-between">
+            <div class="flex justify-between select-none">
               <p class="text-xl font-bold">Super Click</p>
-              <p class="text-xl font-bold">5</p>
+              <p id="superClickUpgradeCount" class="text-xl font-bold">0</p>
             </div>
           </div>
           <div
+            id="criticalClickUpgrade"
             class="bg-white h-[15%] w-[90%] rounded-lg mb-[2vh] px-3 py-5 hover:cursor-pointer hover:scale-[1.02] duration-300 hover:bg-gray-200"
           >
-            <div class="flex justify-between">
+            <div class="flex justify-between select-none">
               <p class="text-xl font-bold">Critical Click</p>
-              <p class="text-xl font-bold">5</p>
+              <p id="criticalClickUpgradeCount" class="text-xl font-bold">0</p>
             </div>
           </div>
           <div
+            id="epicClickUpgrade"
             class="bg-white h-[15%] w-[90%] rounded-lg mb-[2vh] px-3 py-5 hover:cursor-pointer hover:scale-[1.02] duration-300 hover:bg-gray-200"
           >
-            <div class="flex justify-between">
+            <div class="flex justify-between select-none">
               <p class="text-xl font-bold">Epic Click</p>
-              <p class="text-xl font-bold">5</p>
+              <p id="epicClickUpgradeCount" class="text-xl font-bold">0</p>
             </div>
           </div>
           <div
+            id="legendaryClickUpgrade"
             class="bg-white h-[15%] w-[90%] rounded-lg mb-[2vh] px-3 py-5 hover:cursor-pointer hover:scale-[1.02] duration-300 hover:bg-gray-200"
           >
-            <div class="flex justify-between">
+            <div class="flex justify-between select-none">
               <p class="text-xl font-bold">Legendary Click</p>
-              <p class="text-xl font-bold">5</p>
+              <p id="legendaryClickUpgradeCount" class="text-xl font-bold">0</p>
             </div>
           </div>
         </div>
@@ -86,53 +90,64 @@
         >
           <p class="text-2xl text-white font-bold my-2">Autoclicker Upgrades</p>
           <div
+            id="basicAutoclickUpgrade"
             class="bg-white h-[15%] w-[90%] rounded-lg mb-[2vh] px-3 py-5 hover:cursor-pointer hover:scale-[1.02] duration-300 hover:bg-gray-200"
           >
-            <div class="flex justify-between">
+            <div class="flex justify-between select-none">
               <p class="text-xl font-bold">Basic Autoclicker</p>
-              <p class="text-xl font-bold">5</p>
+              <p id="basicAutoclickUpgradeCount" class="text-xl font-bold">0</p>
             </div>
           </div>
           <div
+            id="normalAutoclickUpgrade"
             class="bg-white h-[15%] w-[90%] rounded-lg mb-[2vh] px-3 py-5 hover:cursor-pointer hover:scale-[1.02] duration-300 hover:bg-gray-200"
           >
-            <div class="flex justify-between">
+            <div class="flex justify-between select-none">
               <p class="text-xl font-bold">Normal Autoclicker</p>
-              <p class="text-xl font-bold">5</p>
+              <p id="normalAutoclickUpgradeCount" class="text-xl font-bold">
+                0
+              </p>
             </div>
           </div>
           <div
+            id="fastAutoclickUpgrade"
             class="bg-white h-[15%] w-[90%] rounded-lg mb-[2vh] px-3 py-5 hover:cursor-pointer hover:scale-[1.02] duration-300 hover:bg-gray-200"
           >
-            <div class="flex justify-between">
+            <div class="flex justify-between select-none">
               <p class="text-xl font-bold">Fast Autoclicker</p>
-              <p class="text-xl font-bold">5</p>
+              <p id="fastAutoclickUpgradeCount" class="text-xl font-bold">0</p>
             </div>
           </div>
           <div
+            id="premiumAutoclickUpgrade"
             class="bg-white h-[15%] w-[90%] rounded-lg mb-[2vh] px-3 py-5 hover:cursor-pointer hover:scale-[1.02] duration-300 hover:bg-gray-200"
           >
-            <div class="flex justify-between">
+            <div class="flex justify-between select-none">
               <p class="text-xl font-bold">Premium Autoclicker</p>
-              <p class="text-xl font-bold">5</p>
+              <p id="premiumAutoclickUpgradeCount" class="text-xl font-bold">
+                0
+              </p>
             </div>
           </div>
           <div
+            id="vipAutoclickUpgrade"
             class="bg-white h-[15%] w-[90%] rounded-lg mb-[2vh] px-3 py-5 hover:cursor-pointer hover:scale-[1.02] duration-300 hover:bg-gray-200"
           >
-            <div class="flex justify-between">
+            <div class="flex justify-between select-none">
               <p class="text-xl font-bold">VIP Autoclicker</p>
-              <p class="text-xl font-bold">5</p>
+              <p id="vipAutoclickUpgradeCount" class="text-xl font-bold">0</p>
             </div>
           </div>
         </div>
         <div class="w-[32vw] h-full flex flex-col items-center">
-          <p id="counter" class="text-4xl font-bold mt-3">Clicks: 0</p>
+          <p id="counter" class="text-4xl font-bold mt-3 select-none">
+            Clicks: 0
+          </p>
           <img
             id="cookie"
             src="assets/cookie.png"
             alt="cookie"
-            class="w-[28vw] h-[28vw] my-auto hover:cursor-pointer rounded-full hover:scale-[1.02] duration-300"
+            class="w-[28vw] h-[28vw] my-auto hover:cursor-pointer rounded-full hover:scale-[1.02] duration-300 select-none"
           />
         </div>
       </div>
