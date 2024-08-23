@@ -1,6 +1,35 @@
 let counter = 0;
+if (localStorage.getItem("cookieClicks")) {
+  counter = parseInt(localStorage.getItem("cookieClicks"));
+  let cookieCounts = document.getElementById("counter");
+  cookieCounts.innerHTML = "Clicks: " + counter;
+}
+
 document.getElementById("cookie").addEventListener("click", function () {
-  counter += 1;
+  let clickUpgrades = [
+    parseInt(localStorage.getItem("normalClickCount") || 0),
+    parseInt(localStorage.getItem("superClickCount") || 0),
+    parseInt(localStorage.getItem("criticalClickCount") || 0),
+    parseInt(localStorage.getItem("epicClickCount") || 0),
+    parseInt(localStorage.getItem("legendaryClickCount") || 0),
+  ];
+  let autoclickerUpgrades = [
+    parseInt(localStorage.getItem("basicAutoclickerCount") || 0),
+    parseInt(localStorage.getItem("normalAutoclickerCount") || 0),
+    parseInt(localStorage.getItem("fastAutoclickerCount") || 0),
+    parseInt(localStorage.getItem("premiumAutoclickerCount") || 0),
+    parseInt(localStorage.getItem("vipAutoclickerCount") || 0),
+  ];
+  temp = 0;
+  for (let i = 1; i <= clickUpgrades.length; i++) {
+    temp += clickUpgrades[i - 1] * (i + 1) ** 2;
+  }
+  if (temp > 0) {
+    counter += temp;
+  } else {
+    counter += 1;
+  }
+  localStorage.setItem("cookieClicks", counter);
   let cookieCounts = document.getElementById("counter");
   cookieCounts.innerHTML = "Clicks: " + counter;
   let cookie = document.getElementById("cookie");
@@ -10,47 +39,28 @@ document.getElementById("cookie").addEventListener("click", function () {
   }, 300);
 });
 
-let normalUpgradeCount = 0;
-document
-  .getElementById("normalClickUpgrade")
-  .addEventListener("click", function () {
-    normalUpgradeCount += 1;
-    let upgradeCount = document.getElementById("normalClickUpgradeCount");
-    upgradeCount.innerHTML = normalUpgradeCount;
-  });
+function updateUpgrade(upgradeId, localStorageId) {
+  let count = 0;
+  if (localStorage.getItem(localStorageId)) {
+    count = parseInt(localStorage.getItem(localStorageId));
+    document.getElementById(upgradeId).innerHTML = count;
+  }
+  document
+    .getElementById(upgradeId.replace("Count", ""))
+    .addEventListener("click", function () {
+      count += 1;
+      localStorage.setItem(localStorageId, count);
+      document.getElementById(upgradeId).innerHTML = count;
+    });
+}
 
-let superClickCount = 0;
-document
-  .getElementById("superClickUpgrade")
-  .addEventListener("click", function () {
-    superClickCount += 1;
-    let upgradeCount = document.getElementById("superClickUpgradeCount");
-    upgradeCount.innerHTML = superClickCount;
-  });
-
-let criticalClickCount = 0;
-document
-  .getElementById("criticalClickUpgrade")
-  .addEventListener("click", function () {
-    criticalClickCount += 1;
-    let upgradeCount = document.getElementById("criticalClickUpgradeCount");
-    upgradeCount.innerHTML = criticalClickCount;
-  });
-
-let epicClickCount = 0;
-document
-  .getElementById("epicClickUpgrade")
-  .addEventListener("click", function () {
-    epicClickCount += 1;
-    let upgradeCount = document.getElementById("epicClickUpgradeCount");
-    upgradeCount.innerHTML = epicClickCount;
-  });
-
-let legendaryClickCount = 0;
-document
-  .getElementById("legendaryClickUpgrade")
-  .addEventListener("click", function () {
-    legendaryClickCount += 1;
-    let upgradeCount = document.getElementById("legendaryClickUpgradeCount");
-    upgradeCount.innerHTML = legendaryClickCount;
-  });
+updateUpgrade("normalClickUpgradeCount", "normalClickCount");
+updateUpgrade("superClickUpgradeCount", "superClickCount");
+updateUpgrade("criticalClickUpgradeCount", "criticalClickCount");
+updateUpgrade("epicClickUpgradeCount", "epicClickCount");
+updateUpgrade("legendaryClickUpgradeCount", "legendaryClickCount");
+updateUpgrade("basicAutoclickUpgradeCount", "basicAutoclickerCount");
+updateUpgrade("normalAutoclickUpgradeCount", "normalAutoclickerCount");
+updateUpgrade("fastAutoclickUpgradeCount", "fastAutoclickerCount");
+updateUpgrade("premiumAutoclickUpgradeCount", "premiumAutoclickerCount");
+updateUpgrade("vipAutoclickUpgradeCount", "vipAutoclickerCount");
