@@ -1,24 +1,16 @@
-let counter = 0;
-if (localStorage.getItem("cookieClicks")) {
-  counter = parseInt(localStorage.getItem("cookieClicks"));
-  let cookieCounts = document.getElementById("counter");
-  cookieCounts.innerHTML = "Clicks: " + counter;
-}
-
 document.getElementById("cookie").addEventListener("click", function () {
+  let counter = 0;
+  if (parseInt(localStorage.getItem("cookieClicks")) > 0) {
+    counter = parseInt(localStorage.getItem("cookieClicks"));
+    let cookieCounts = document.getElementById("counter");
+    cookieCounts.innerHTML = "Clicks: " + counter;
+  }
   let clickUpgrades = [
     parseInt(localStorage.getItem("normalClickCount") || 0),
     parseInt(localStorage.getItem("superClickCount") || 0),
     parseInt(localStorage.getItem("criticalClickCount") || 0),
     parseInt(localStorage.getItem("epicClickCount") || 0),
     parseInt(localStorage.getItem("legendaryClickCount") || 0),
-  ];
-  let autoclickerUpgrades = [
-    parseInt(localStorage.getItem("basicAutoclickerCount") || 0),
-    parseInt(localStorage.getItem("normalAutoclickerCount") || 0),
-    parseInt(localStorage.getItem("fastAutoclickerCount") || 0),
-    parseInt(localStorage.getItem("premiumAutoclickerCount") || 0),
-    parseInt(localStorage.getItem("vipAutoclickerCount") || 0),
   ];
   temp = 0;
   for (let i = 1; i <= clickUpgrades.length; i++) {
@@ -64,3 +56,25 @@ updateUpgrade("normalAutoclickUpgradeCount", "normalAutoclickerCount");
 updateUpgrade("fastAutoclickUpgradeCount", "fastAutoclickerCount");
 updateUpgrade("premiumAutoclickUpgradeCount", "premiumAutoclickerCount");
 updateUpgrade("vipAutoclickUpgradeCount", "vipAutoclickerCount");
+
+setInterval(() => {
+  if (parseInt(localStorage.getItem("cookieClicks")) > 0) {
+    let autoclickerUpgrades = [
+      parseInt(localStorage.getItem("basicAutoclickerCount") || 0),
+      parseInt(localStorage.getItem("normalAutoclickerCount") || 0),
+      parseInt(localStorage.getItem("fastAutoclickerCount") || 0),
+      parseInt(localStorage.getItem("premiumAutoclickerCount") || 0),
+      parseInt(localStorage.getItem("vipAutoclickerCount") || 0),
+    ];
+    let autoclickerCount = 0;
+    for (let i = 0; i < autoclickerUpgrades.length; i++) {
+      autoclickerCount += autoclickerUpgrades[i] * (i + 2) ** 2;
+    }
+    console.log(autoclickerCount);
+    let temp = parseInt(localStorage.getItem("cookieClicks"));
+    temp += autoclickerCount;
+    localStorage.setItem("cookieClicks", temp);
+    let cookieCounts = document.getElementById("counter");
+    cookieCounts.innerHTML = "Clicks: " + localStorage.getItem("cookieClicks");
+  }
+}, 1000);

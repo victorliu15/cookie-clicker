@@ -27,6 +27,29 @@
       .bounce {
         animation: bounce 0.3s ease-in-out;
       }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 100% 100%;
+        }
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          45deg,
+          rgb(51, 19, 0),
+          #f7d794,
+          rgb(51, 19, 0),
+          #f7d794
+        );
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientAnimation 5s ease infinite;
+      }
     </style>
   </head>
   <body class="bg-gray-900 flex justify-center items-center px-10 py-12">
@@ -142,7 +165,10 @@
           </div>
         </div>
         <div class="w-[32vw] h-full flex flex-col items-center">
-          <p id="counter" class="text-4xl font-bold mt-3 select-none">
+          <p
+            id="counter"
+            class="text-4xl font-bold mt-3 select-none gradient-text"
+          >
             Clicks: 0
           </p>
           <img
