@@ -43,6 +43,150 @@ function updateUpgrade(upgradeId, localStorageId) {
   document
     .getElementById(upgradeId.replace("Count", ""))
     .addEventListener("click", function () {
+      let clicks = parseInt(localStorage.getItem("cookieClicks"));
+
+      if (localStorageId === "normalClickCount" && clicks < 10) {
+        document.getElementById(
+          upgradeId.replace("Count", "")
+        ).style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById(
+            upgradeId.replace("Count", "")
+          ).style.backgroundColor = "white";
+        }, 100);
+        return;
+      }
+      if (localStorageId === "normalClickCount" && clicks >= 10) {
+        localStorage.setItem("cookieClicks", clicks - 10);
+      }
+      if (localStorageId === "superClickCount" && clicks < 1000) {
+        document.getElementById(
+          upgradeId.replace("Count", "")
+        ).style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById(
+            upgradeId.replace("Count", "")
+          ).style.backgroundColor = "white";
+        }, 100);
+        return;
+      }
+      if (localStorageId === "superClickCount" && clicks >= 1000) {
+        localStorage.setItem("cookieClicks", clicks - 1000);
+      }
+      if (localStorageId === "criticalClickCount" && clicks < 100000) {
+        document.getElementById(
+          upgradeId.replace("Count", "")
+        ).style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById(
+            upgradeId.replace("Count", "")
+          ).style.backgroundColor = "white";
+        }, 100);
+        return;
+      }
+      if (localStorageId === "criticalClickCount" && clicks >= 100000) {
+        localStorage.setItem("cookieClicks", clicks - 100000);
+      }
+      if (localStorageId === "epicClickCount" && clicks < 1000000) {
+        document.getElementById(
+          upgradeId.replace("Count", "")
+        ).style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById(
+            upgradeId.replace("Count", "")
+          ).style.backgroundColor = "white";
+        }, 100);
+        return;
+      }
+      if (localStorageId === "epicClickCount" && clicks >= 1000000) {
+        localStorage.setItem("cookieClicks", clicks - 1000000);
+      }
+      if (localStorageId === "legendaryClickCount" && clicks < 10000000) {
+        document.getElementById(
+          upgradeId.replace("Count", "")
+        ).style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById(
+            upgradeId.replace("Count", "")
+          ).style.backgroundColor = "white";
+        }, 100);
+        return;
+      }
+      if (localStorageId === "legendaryClickCount" && clicks >= 10000000) {
+        localStorage.setItem("cookieClicks", clicks - 10000000);
+      }
+      if (localStorageId === "basicAutoclickerCount" && clicks < 10) {
+        document.getElementById(
+          upgradeId.replace("Count", "")
+        ).style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById(
+            upgradeId.replace("Count", "")
+          ).style.backgroundColor = "white";
+        }, 100);
+        return;
+      }
+      if (localStorageId === "basicAutoclickerCount" && clicks >= 10) {
+        localStorage.setItem("cookieClicks", clicks - 10);
+      }
+      if (localStorageId === "normalAutoclickerCount" && clicks < 10000) {
+        document.getElementById(
+          upgradeId.replace("Count", "")
+        ).style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById(
+            upgradeId.replace("Count", "")
+          ).style.backgroundColor = "white";
+        }, 100);
+        return;
+      }
+      if (localStorageId === "normalAutoclickerCount" && clicks >= 10000) {
+        localStorage.setItem("cookieClicks", clicks - 10000);
+      }
+      if (localStorageId === "fastAutoclickerCount" && clicks < 100000) {
+        document.getElementById(
+          upgradeId.replace("Count", "")
+        ).style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById(
+            upgradeId.replace("Count", "")
+          ).style.backgroundColor = "white";
+        }, 100);
+        return;
+      }
+      if (localStorageId === "fastAutoclickerCount" && clicks >= 100000) {
+        localStorage.setItem("cookieClicks", clicks - 100000);
+      }
+      if (localStorageId === "premiumAutoclickerCount" && clicks < 1000000) {
+        document.getElementById(
+          upgradeId.replace("Count", "")
+        ).style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById(
+            upgradeId.replace("Count", "")
+          ).style.backgroundColor = "white";
+        }, 100);
+        return;
+      }
+      if (localStorageId === "premiumAutoclickerCount" && clicks >= 1000000) {
+        localStorage.setItem("cookieClicks", clicks - 1000000);
+      }
+
+      if (localStorageId === "vipAutoclickerCount" && clicks < 15000000) {
+        document.getElementById(
+          upgradeId.replace("Count", "")
+        ).style.backgroundColor = "red";
+        setTimeout(() => {
+          document.getElementById(
+            upgradeId.replace("Count", "")
+          ).style.backgroundColor = "white";
+        }, 100);
+        return;
+      }
+      if (localStorageId === "vipAutoclickerCount" && clicks >= 15000000) {
+        localStorage.setItem("cookieClicks", clicks - 15000000);
+      }
+
       count += 1;
       localStorage.setItem(localStorageId, count);
       document.getElementById(upgradeId).innerHTML = count;
@@ -61,7 +205,6 @@ updateUpgrade("premiumAutoclickUpgradeCount", "premiumAutoclickerCount");
 updateUpgrade("vipAutoclickUpgradeCount", "vipAutoclickerCount");
 
 setInterval(() => {
-  console.log(cookieMultiplier);
   if (parseInt(localStorage.getItem("cookieClicks")) >= 0) {
     let autoclickerUpgrades = [
       parseInt(localStorage.getItem("basicAutoclickerCount") || 0),
@@ -87,6 +230,13 @@ document.getElementById("fistTool").addEventListener("click", function () {
   let fist = document.getElementById("fistTool");
   let fistStatus = document.getElementById("fistStatus");
   if (fistStatus.innerHTML.includes("clicks")) {
+    let totalClicks = parseInt(localStorage.getItem("cookieClicks"));
+    if (totalClicks >= 100) {
+      localStorage.setItem("cookieClicks", totalClicks - 100);
+    } else {
+      return;
+    }
+
     fist.style.backgroundColor = "green";
     fistStatus.innerHTML = "equipped";
     cookieMultiplier = 2;
@@ -137,6 +287,12 @@ document.getElementById("stickTool").addEventListener("click", function () {
   let stick = document.getElementById("stickTool");
   let stickStatus = document.getElementById("stickStatus");
   if (stickStatus.innerHTML.includes("clicks")) {
+    let totalClicks = parseInt(localStorage.getItem("cookieClicks"));
+    if (totalClicks >= 10000) {
+      localStorage.setItem("cookieClicks", totalClicks - 10000);
+    } else {
+      return;
+    }
     stick.style.backgroundColor = "green";
     stickStatus.innerHTML = "equipped";
     cookieMultiplier = 5;
@@ -187,6 +343,12 @@ document.getElementById("rockTool").addEventListener("click", function () {
   let rock = document.getElementById("rockTool");
   let rockStatus = document.getElementById("rockStatus");
   if (rockStatus.innerHTML.includes("clicks")) {
+    let totalClicks = parseInt(localStorage.getItem("cookieClicks"));
+    if (totalClicks >= 1000000) {
+      localStorage.setItem("cookieClicks", totalClicks - 1000000);
+    } else {
+      return;
+    }
     rock.style.backgroundColor = "green";
     rockStatus.innerHTML = "equipped";
     cookieMultiplier = 10;
@@ -237,6 +399,12 @@ document.getElementById("gunTool").addEventListener("click", function () {
   let gun = document.getElementById("gunTool");
   let gunStatus = document.getElementById("gunStatus");
   if (gunStatus.innerHTML.includes("clicks")) {
+    let totalClicks = parseInt(localStorage.getItem("cookieClicks"));
+    if (totalClicks >= 10000000) {
+      localStorage.setItem("cookieClicks", totalClicks - 10000000);
+    } else {
+      return;
+    }
     gun.style.backgroundColor = "green";
     gunStatus.innerHTML = "equipped";
     cookieMultiplier = 100;
@@ -287,6 +455,12 @@ document.getElementById("nukeTool").addEventListener("click", function () {
   let nuke = document.getElementById("nukeTool");
   let nukeStatus = document.getElementById("nukeStatus");
   if (nukeStatus.innerHTML.includes("clicks")) {
+    let totalClicks = parseInt(localStorage.getItem("cookieClicks"));
+    if (totalClicks >= 1000000000) {
+      localStorage.setItem("cookieClicks", totalClicks - 1000000000);
+    } else {
+      return;
+    }
     nuke.style.backgroundColor = "green";
     nukeStatus.innerHTML = "equipped";
     cookieMultiplier = 1000;
