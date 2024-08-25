@@ -1,7 +1,11 @@
+const cursor = document.getElementById("custom-cursor");
 document.addEventListener("DOMContentLoaded", function () {
-  const cursor = document.getElementById("custom-cursor");
-
-  cursor.style.backgroundImage = "url('/assets/fist.png')";
+  let tool = localStorage.getItem("tool");
+  if (tool) {
+    cursor.style.backgroundImage = "url('" + tool + "')";
+  } else {
+    cursor.style.backgroundImage = "url('')";
+  }
   cursor.style.backgroundSize = "contain";
   cursor.style.backgroundRepeat = "no-repeat";
 
@@ -12,7 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 let cookieMultiplier = 1;
-localStorage.setItem("cookieClicks", 0);
+if (!localStorage.getItem("cookieClicks")) {
+  localStorage.setItem("cookieClicks", 0);
+}
 
 document.getElementById("cookie").addEventListener("click", function () {
   let counter = 0;
@@ -239,6 +245,15 @@ setInterval(() => {
   }
 }, 1000);
 
+setInterval(() => {
+  if (parseInt(localStorage.getItem("cookieClicks")) >= 0) {
+    let temp = parseInt(localStorage.getItem("cookieClicks"));
+    localStorage.setItem("cookieClicks", temp);
+    let cookieCounts = document.getElementById("counter");
+    cookieCounts.innerHTML = "Clicks: " + localStorage.getItem("cookieClicks");
+  }
+}, 1);
+
 document.getElementById("fistTool").addEventListener("click", function () {
   let fist = document.getElementById("fistTool");
   let fistStatus = document.getElementById("fistStatus");
@@ -246,6 +261,8 @@ document.getElementById("fistTool").addEventListener("click", function () {
     let totalClicks = parseInt(localStorage.getItem("cookieClicks"));
     if (totalClicks >= 100) {
       localStorage.setItem("cookieClicks", totalClicks - 100);
+      localStorage.setItem("tool", "fist");
+      cursor.style.backgroundImage = "url('/assets/fist.png')";
     } else {
       return;
     }
@@ -270,10 +287,14 @@ document.getElementById("fistTool").addEventListener("click", function () {
       document.getElementById("nukeTool").style.backgroundColor = "white";
     }
   } else if (fistStatus.innerHTML.includes("equipped")) {
+    cursor.style.backgroundImage = "url('/assets/.png')";
     fist.style.backgroundColor = "white";
     fistStatus.innerHTML = "equip";
     cookieMultiplier = 1;
+    localStorage.setItem("tool", "");
   } else {
+    localStorage.setItem("tool", "fist");
+    cursor.style.backgroundImage = "url('/assets/fist.png')";
     fist.style.backgroundColor = "green";
     fistStatus.innerHTML = "equipped";
     cookieMultiplier = 2;
@@ -303,6 +324,8 @@ document.getElementById("stickTool").addEventListener("click", function () {
     let totalClicks = parseInt(localStorage.getItem("cookieClicks"));
     if (totalClicks >= 10000) {
       localStorage.setItem("cookieClicks", totalClicks - 10000);
+      cursor.style.backgroundImage = "url('/assets/stick.png')";
+      localStorage.setItem("tool", "stick");
     } else {
       return;
     }
@@ -326,10 +349,14 @@ document.getElementById("stickTool").addEventListener("click", function () {
       document.getElementById("nukeTool").style.backgroundColor = "white";
     }
   } else if (stickStatus.innerHTML.includes("equipped")) {
+    cursor.style.backgroundImage = "url('/assets/.png')";
     stick.style.backgroundColor = "white";
     stickStatus.innerHTML = "equip";
     cookieMultiplier = 1;
+    localStorage.setItem("tool", "");
   } else {
+    localStorage.setItem("tool", "stick");
+    cursor.style.backgroundImage = "url('/assets/stick.png')";
     stick.style.backgroundColor = "green";
     stickStatus.innerHTML = "equipped";
     cookieMultiplier = 5;
@@ -359,6 +386,8 @@ document.getElementById("rockTool").addEventListener("click", function () {
     let totalClicks = parseInt(localStorage.getItem("cookieClicks"));
     if (totalClicks >= 1000000) {
       localStorage.setItem("cookieClicks", totalClicks - 1000000);
+      cursor.style.backgroundImage = "url('/assets/rock.png')";
+      localStorage.setItem("tool", "rock");
     } else {
       return;
     }
@@ -382,10 +411,14 @@ document.getElementById("rockTool").addEventListener("click", function () {
       document.getElementById("nukeTool").style.backgroundColor = "white";
     }
   } else if (rockStatus.innerHTML.includes("equipped")) {
+    cursor.style.backgroundImage = "url('/assets/.png')";
     rock.style.backgroundColor = "white";
     rockStatus.innerHTML = "equip";
     cookieMultiplier = 1;
+    localStorage.setItem("tool", "");
   } else {
+    localStorage.setItem("tool", "rock");
+    cursor.style.backgroundImage = "url('/assets/rock.png')";
     rock.style.backgroundColor = "green";
     rockStatus.innerHTML = "equipped";
     cookieMultiplier = 10;
@@ -415,6 +448,8 @@ document.getElementById("gunTool").addEventListener("click", function () {
     let totalClicks = parseInt(localStorage.getItem("cookieClicks"));
     if (totalClicks >= 10000000) {
       localStorage.setItem("cookieClicks", totalClicks - 10000000);
+      cursor.style.backgroundImage = "url('/assets/gun.png')";
+      localStorage.setItem("tool", "gun");
     } else {
       return;
     }
@@ -438,10 +473,14 @@ document.getElementById("gunTool").addEventListener("click", function () {
       document.getElementById("nukeTool").style.backgroundColor = "white";
     }
   } else if (gunStatus.innerHTML.includes("equipped")) {
+    cursor.style.backgroundImage = "url('/assets/.png')";
     gun.style.backgroundColor = "white";
     gunStatus.innerHTML = "equip";
     cookieMultiplier = 1;
+    localStorage.setItem("tool", "");
   } else {
+    localStorage.setItem("tool", "gun");
+    cursor.style.backgroundImage = "url('/assets/gun.png')";
     gun.style.backgroundColor = "green";
     gunStatus.innerHTML = "equipped";
     cookieMultiplier = 100;
@@ -471,6 +510,8 @@ document.getElementById("nukeTool").addEventListener("click", function () {
     let totalClicks = parseInt(localStorage.getItem("cookieClicks"));
     if (totalClicks >= 1000000000) {
       localStorage.setItem("cookieClicks", totalClicks - 1000000000);
+      cursor.style.backgroundImage = "url('/assets/nuke.png')";
+      localStorage.setItem("tool", "nuke");
     } else {
       return;
     }
@@ -494,10 +535,14 @@ document.getElementById("nukeTool").addEventListener("click", function () {
       document.getElementById("gunTool").style.backgroundColor = "white";
     }
   } else if (nukeStatus.innerHTML.includes("equipped")) {
+    cursor.style.backgroundImage = "url('/assets/.png')";
     nuke.style.backgroundColor = "white";
     nukeStatus.innerHTML = "equip";
     cookieMultiplier = 1;
+    localStorage.setItem("tool", "");
   } else {
+    localStorage.setItem("tool", "nuke");
+    cursor.style.backgroundImage = "url('/assets/nuke.png')";
     nuke.style.backgroundColor = "green";
     nukeStatus.innerHTML = "equipped";
     cookieMultiplier = 1000;
