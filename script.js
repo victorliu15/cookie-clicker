@@ -1,3 +1,16 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const cursor = document.getElementById("custom-cursor");
+
+  cursor.style.backgroundImage = "url('/assets/fist.png')";
+  cursor.style.backgroundSize = "contain";
+  cursor.style.backgroundRepeat = "no-repeat";
+
+  document.addEventListener("mousemove", function (e) {
+    cursor.style.left = `${e.clientX - 20}px`;
+    cursor.style.top = `${e.clientY - 20}px`;
+  });
+});
+
 let cookieMultiplier = 1;
 localStorage.setItem("cookieClicks", 0);
 
